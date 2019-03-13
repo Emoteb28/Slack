@@ -39,6 +39,7 @@ export default {
     }
   },
   mounted(){
+    // if member is loged go to channels route
   	if(this.$store.state.token){
   		this.$router.push('/channels');
   	}
@@ -47,6 +48,7 @@ export default {
     
   },
   methods : {
+    // login member
   		login() {
 
         this.setToken({

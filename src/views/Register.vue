@@ -59,6 +59,7 @@ export default {
     
   },
   methods : {
+    // creer un compte
     creationCompte(){
         if(this.password1 == this.password2){
 

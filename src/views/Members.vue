@@ -30,15 +30,18 @@ export default {
     }
   },
   created() {
+    // get all members
       this.retrieveMembers();
 
     },
   computed: {
+    // returns members
       members() {
         return this.$store.state.members;
     }
   },
     methods: {
+      // delete member
       remove_Member(id){
           var result = confirm("Want to delete the member ?");
           if (result) {

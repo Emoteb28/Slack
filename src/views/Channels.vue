@@ -3,7 +3,7 @@
 <b-container>
     <div class="up">
   <b-list-group v-if="channels">
-    <b-list-group-item variant="dark"> Channels ( <b-badge variant="light">{{channels.length}}</b-badge> channel(s)) 
+    <b-list-group-item variant="dark"><i class="far fa-comments"></i> Channels ( <b-badge variant="light">{{channels.length}}</b-badge> channel(s)) 
     
     <!--  -->
     
@@ -32,7 +32,7 @@
       <b-list-group  v-for="channel in channels" :key="channel._id" >
         <b-list-group-item class="channel-section">
           <router-link tag="span" class="top channel" :to="'/channel/'+channel._id" >
-            {{ channel.label }} 
+           <i class="fas fa-comments"></i> {{ channel.label }} 
             <b-badge pill variant="secondary">{{ channel.topic }}</b-badge>
           </router-link>
             <i class="fas fa-trash-alt trash float-right align-middle" @click="remove_Channel(channel._id)"></i>
@@ -56,10 +56,13 @@ export default {
     }
   },
   created() {
+
+    // get all channels
       this.retrieveChannels();
 
     },
   computed: {
+    // returns the list of channels
       channels() {
         return this.$store.state.channels
     }
@@ -78,6 +81,7 @@ export default {
           this.handleSubmit()
         }
       },
+      // add a channel 
       handleSubmit() {
         console.log( this.label + ' ' + this.topic );
 
@@ -95,6 +99,7 @@ export default {
           this.$refs.modal.hide()
         })
       },
+      // delete channel
       remove_Channel(id){
 
           var result = confirm("Want to delete the channel ?");

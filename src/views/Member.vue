@@ -46,11 +46,13 @@ export default {
     }
   },
   created() {
-
+      // get members list
       this.retrieveMembers();
 
+      // get channels list
       this.retrieveChannels();
 
+      // get posts of a member
       this.retrieve10Posts({
               _id: this.$route.params.id
             });
@@ -58,6 +60,7 @@ export default {
       
     },
   computed: {
+    // returns member infos
       member() {
         let members = this.$store.state.members;
         let member;
@@ -73,6 +76,7 @@ export default {
 
         return member;
     },
+    // returns the 10 last posts of a member
     posts(){
 
         let allPosts = this.$store.state.posts_10;

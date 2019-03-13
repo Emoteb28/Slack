@@ -107,14 +107,16 @@ export default {
     }
   },
   created() {
+      // get channel infos
       this.retrieveChannel({
               _id: this.$route.params.id
             });
-
+      // get posts 
       this.retrievePosts({
               _id: this.$route.params.id
             });
 
+      // get members infos
       this.retrieveMembers();
           
         this.message = [];
@@ -123,11 +125,13 @@ export default {
        
     },
   computed: {
+    // returns the channel infos
       channel() {
         this.label = this.$store.state.channel.label;
         this.topic = this.$store.state.channel.topic;
         return this.$store.state.channel;
     },
+    // returns the posts of the channel for each member
     posts() {
         this.message_disp = [];
         this.message = [];
@@ -199,6 +203,7 @@ export default {
         }
   },
   methods: {
+    // add post 
     add_Post(){
             this.addPost({
               message: this.text,
@@ -214,6 +219,7 @@ export default {
                 window.scrollTo(0,document.querySelector("#scroll").scrollHeight + 100);
               })
     },
+    // delete a post
       remove_Post(id){
           var result = confirm("Want to delete the post ?");
           if (result) {
@@ -250,6 +256,7 @@ export default {
           this.topic_disp = false;
           this.label_disp = true;
       },
+      // edit topic
       edit_Topic(){
 
                 this.editTopic({
@@ -279,6 +286,7 @@ export default {
 
         this.msgId = id;
       },
+      // edit post
       edit_Message(_idPost){
 
                 this.editMessage({
@@ -293,6 +301,7 @@ export default {
                   });
                 });
       },
+      // refresh the post of the channel
       refresh(){
 
         this.retrieveChannel({

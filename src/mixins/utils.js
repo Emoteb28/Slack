@@ -1,5 +1,6 @@
 export const Utils = {
     methods: {
+      // check if member is connected
         memberConnected() {
            if(this.$store.state.member === false) {
                return false;
@@ -7,10 +8,11 @@ export const Utils = {
                return true;
            }
         },
-
+        // set axios token
         setTokenAxios(token) {
             window.axios.defaults.params.token = token;
         },
+        // register new user
         register( data) {
             return new Promise((resolve, reject) => {
                 window.axios.post('members',{
@@ -25,6 +27,7 @@ export const Utils = {
               });
           })
           },
+          // login function -> get token and set it to axios
           setToken( credentials){
                 return new Promise((resolve, reject) => {
               window.axios.post('members/signin', {
@@ -56,6 +59,7 @@ export const Utils = {
                 })
               })
           },
+          // disconnect a member
           destroyToken() {
             if (this.memberConnected()) {
       
@@ -81,6 +85,7 @@ export const Utils = {
               
             }
           },
+          // get members list 
           retrieveMembers() {
             this.$store.commit('setTokenAxios');
             window.axios.get('members')
@@ -92,6 +97,7 @@ export const Utils = {
                 console.log(error)
               })
           },
+          // get channels list
           retrieveChannels() {
             this.$store.commit('setTokenAxios');
             window.axios.get('channels')
@@ -103,6 +109,7 @@ export const Utils = {
                 console.log(error)
               })
           },
+          // create a channel
           addChannel( data) {
             return new Promise((resolve, reject) => {
                 this.$store.commit('setTokenAxios');
@@ -116,6 +123,7 @@ export const Utils = {
               });
             })
           },
+          // get channel infos
           retrieveChannel( data) {
             this.$store.commit('setTokenAxios');
             window.axios.get('channels/' + data._id)
@@ -127,6 +135,7 @@ export const Utils = {
                 console.log(error)
               })
           },
+          // get posts of a channel
           retrievePosts( data) {
             this.$store.commit('setTokenAxios');
             window.axios.get('channels/' + data._id + '/posts')
@@ -138,6 +147,7 @@ export const Utils = {
                 console.log(error)
               })
           },
+          // add a post in a chennel
           addPost( data) {
             this.$store.commit('setTokenAxios');
             return new Promise((resolve, reject) => {
@@ -150,6 +160,7 @@ export const Utils = {
               });
             })
           },
+          // delete a channel
           removeChannel( data) {
             this.$store.commit('setTokenAxios');
             return new Promise((resolve, reject) => {
@@ -161,6 +172,7 @@ export const Utils = {
               });
             })
           },
+          // delete a post from a channel
           removePost( data) {
             this.$store.commit('setTokenAxios');
             return new Promise((resolve, reject) => {
@@ -172,6 +184,7 @@ export const Utils = {
               });
             })
           },
+          // delete a member
           removeMember( data) {
             this.$store.commit('setTokenAxios');
             return new Promise((resolve, reject) => {
@@ -183,6 +196,7 @@ export const Utils = {
               });
             })
           },
+          // edit the label of a channel
           editLabel( data) {
             return new Promise((resolve, reject) => {
                 this.$store.commit('setTokenAxios');
@@ -195,6 +209,7 @@ export const Utils = {
               });
             })
           },
+          // edit the topic of a channel
           editTopic( data) {
             return new Promise((resolve, reject) => {
                 this.$store.commit('setTokenAxios');
@@ -208,6 +223,7 @@ export const Utils = {
               });
             })
           },
+          // edit a post
           editMessage( data) {
             return new Promise((resolve, reject) => {
                 this.$store.commit('setTokenAxios');
@@ -220,6 +236,7 @@ export const Utils = {
               });
             })
           },
+          // get all the post of a member 
           retrieve10Posts( data) {
             this.$store.commit('setTokenAxios');
             let myPosts = [];

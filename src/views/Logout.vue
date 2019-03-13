@@ -6,6 +6,7 @@
 
 export default {
   created() {
+    // logout member
       this.destroyToken();
       
   }
